@@ -20,11 +20,11 @@ public class Board {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
-    private Category category; // TODO : category domain 의 엔티티를 가져와야 할 것 같음.
+    private Category category; // TODO : category domain 의 엔티티를 가져와야 함.
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
-    private Member member; // TODO : member domain 의 엔티티를 가져와야 할 것 같음.
+    private Member member;
 
     @Column(name = "name", nullable = false)
     private String boardName;
