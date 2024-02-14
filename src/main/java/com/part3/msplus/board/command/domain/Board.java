@@ -1,19 +1,23 @@
 package com.part3.msplus.board.command.domain;
 
-import com.part3.msplus.member.domain.Member;
+import com.part3.msplus.global.model.BaseTimeEntity;
+import com.part3.msplus.member.command.domain.Member;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 
 @Entity
 @Table(name = "board")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Board {
+public class Board extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -29,23 +33,11 @@ public class Board {
     @Column(name = "name", nullable = false)
     private String boardName;
 
-    @Column(name = "created_at", nullable = false)
-    private ZonedDateTime createdAt;
-
-    @Column(name = "updated_at", nullable = false)
-    private ZonedDateTime updatedAt;
-
-    @Column(name = "deleted_at")
-    private ZonedDateTime deletedAt;
-
     @Builder
-    public Board(Long id, Category category, Member member, String boardName, ZonedDateTime createdAt, ZonedDateTime updatedAt, ZonedDateTime deletedAt) {
+    public Board(Long id, Category category, Member member, String boardName) {
         this.id = id;
         this.category = category;
         this.member = member;
         this.boardName = boardName;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
-        this.deletedAt = deletedAt;
     }
 }

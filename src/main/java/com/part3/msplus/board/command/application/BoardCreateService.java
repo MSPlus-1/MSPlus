@@ -2,10 +2,10 @@ package com.part3.msplus.board.command.application;
 
 import com.part3.msplus.board.command.domain.Board;
 import com.part3.msplus.board.command.domain.Category;
-import com.part3.msplus.member.domain.Member;
-import com.part3.msplus.board.command.domain.dao.BoardRepository;
-import com.part3.msplus.board.command.domain.dao.CategoryRepository;
-import com.part3.msplus.member.domain.dao.MemberRepository;
+import com.part3.msplus.member.command.domain.Member;
+import com.part3.msplus.board.command.domain.repository.BoardRepository;
+import com.part3.msplus.board.command.domain.repository.CategoryRepository;
+import com.part3.msplus.member.query.dao.MemberRepository;
 import com.part3.msplus.board.controller.dto.request.BoardCreateRequest;
 import com.part3.msplus.board.controller.dto.response.BoardResponse;
 import jakarta.transaction.Transactional;
@@ -35,7 +35,7 @@ public class BoardCreateService {
         Category category = this.categoryRepository.findById(boardCreateRequest.getCategoryId())
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 카테고리입니다."));
 
-        Board board = boardCreateRequest.toEntity(category, member, ZonedDateTime.now(), ZonedDateTime.now(), null);
+        Board board = boardCreateRequest.toEntity(category, member);
 
         // TODO : 검증 로직
 

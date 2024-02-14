@@ -2,10 +2,11 @@ package com.part3.msplus.board.controller.dto.request;
 
 import com.part3.msplus.board.command.domain.Board;
 import com.part3.msplus.board.command.domain.Category;
-import com.part3.msplus.member.domain.Member;
+import com.part3.msplus.member.command.domain.Member;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
+import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 
 @Getter
@@ -23,14 +24,11 @@ public class BoardCreateRequest {
     @NotNull(message = "BOARD_NAME_EMPTY")
     private String boardName;
 
-    public Board toEntity(Category category, Member member, ZonedDateTime createdAt, ZonedDateTime updatedAt, ZonedDateTime deletedAt) {
+    public Board toEntity(Category category, Member member) {
         return Board.builder()
                 .category(category)
                 .member(member)
                 .boardName(this.boardName)
-                .createdAt(createdAt)
-                .updatedAt(updatedAt)
-                .deletedAt(deletedAt)
                 .build();
     }
 }

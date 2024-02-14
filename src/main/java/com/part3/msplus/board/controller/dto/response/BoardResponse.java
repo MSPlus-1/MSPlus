@@ -3,7 +3,7 @@ package com.part3.msplus.board.controller.dto.response;
 import com.part3.msplus.board.command.domain.Board;
 import lombok.*;
 
-import java.time.ZonedDateTime;
+import java.time.LocalDateTime;
 
 @Getter
 public class BoardResponse {
@@ -16,7 +16,7 @@ public class BoardResponse {
 
     private Long memberId;
 
-    private ZonedDateTime createdAt;
+    private LocalDateTime createdAt;
 
     public BoardResponse(Board board) {
         this.boardId = board.getId();

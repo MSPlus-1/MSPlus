@@ -1,4 +1,4 @@
-package com.part3.msplus.board.command.domain.dao;
+package com.part3.msplus.board.command.domain.repository;
 
 import com.part3.msplus.board.command.domain.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
