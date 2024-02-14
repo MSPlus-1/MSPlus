@@ -14,6 +14,15 @@ public enum Error {
     // auth : 20,000
     UNAUTHORIZED(20000, "Unauthenticated Access"),
     MISMATCH_PASSWORD(20001, "Mismatch password"),
+
+    // member : 30,000
+    MEMBER_NOT_FOUND(30000, "Member not found"),
+
+    // board : 40,000
+    BOARD_CREATE_PERMISSION_DENIED(30000, "Board create permission denied"),
+
+    // category : 50,000
+    CATEGORY_NOT_FOUND(50000, "Category not found")
     ;
 
     private final int code;

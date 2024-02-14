@@ -2,6 +2,8 @@ package com.part3.msplus.board.command.application;
 
 import com.part3.msplus.board.command.domain.Board;
 import com.part3.msplus.board.command.domain.Category;
+import com.part3.msplus.global.exception.CustomException;
+import com.part3.msplus.global.exception.dto.Error;
 import com.part3.msplus.member.command.domain.Member;
 import com.part3.msplus.board.command.domain.repository.BoardRepository;
 import com.part3.msplus.board.command.domain.repository.CategoryRepository;
@@ -31,13 +33,11 @@ public class BoardCreateService {
     public BoardResponse createBoard(BoardCreateRequest boardCreateRequest) {
         // TODO : exception handler 처리
         Member member = this.memberRepository.findById(boardCreateRequest.getMemberId())
-                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 회원입니다."));
+                .orElseThrow(() -> new CustomException(Error.MEMBER_NOT_FOUND));
         Category category = this.categoryRepository.findById(boardCreateRequest.getCategoryId())
-                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 카테고리입니다."));
+                .orElseThrow(() -> new CustomException(Error.CATEGORY_NOT_FOUND));
 
         Board board = boardCreateRequest.toEntity(category, member);
-
-        // TODO : 검증 로직
 
         this.boardRepository.save(board);
 

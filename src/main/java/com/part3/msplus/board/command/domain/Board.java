@@ -1,7 +1,10 @@
 package com.part3.msplus.board.command.domain;
 
+import com.part3.msplus.global.exception.CustomException;
+import com.part3.msplus.global.exception.dto.Error;
 import com.part3.msplus.global.model.BaseTimeEntity;
 import com.part3.msplus.member.command.domain.Member;
+import com.part3.msplus.member.command.domain.Role;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -35,9 +38,17 @@ public class Board extends BaseTimeEntity {
 
     @Builder
     public Board(Long id, Category category, Member member, String boardName) {
+        this.checkRole(member);
         this.id = id;
         this.category = category;
         this.member = member;
         this.boardName = boardName;
+    }
+
+    private void checkRole(Member member) {
+        // member 의 role 을 확인. admin일 경우만 board 생성 가능
+        if(!member.getMemberRole().getRole().equals(Role.ROLE_ADMIN) ) {
+            throw new CustomException(Error.BOARD_CREATE_PERMISSION_DENIED);
+        }
     }
 }
