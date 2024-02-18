@@ -1,0 +1,13 @@
+### 1. 게시판 조회
+GET {{board-api}}/api/v1/boards
+Content-Type: application/json
+
+### 2. 게시판 등록
+POST {{board-api}}/api/v1/boards
+Content-Type: application/json
+
+{
+    "memberId": 1,
+    "categoryId": 1,
+    "boardName" : "게시판2"
+}
