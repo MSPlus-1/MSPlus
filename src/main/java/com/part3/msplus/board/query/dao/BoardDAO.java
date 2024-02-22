@@ -1,10 +1,8 @@
 package com.part3.msplus.board.query.dao;
 
 import com.part3.msplus.board.command.domain.Board;
-import com.part3.msplus.board.controller.dto.request.BoardSearchCondition;
+import com.part3.msplus.board.controller.dto.request.RequestParam;
 import com.part3.msplus.board.controller.dto.request.SearchRequest;
-import com.part3.msplus.board.controller.dto.response.BoardResponse;
-import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
@@ -12,19 +10,16 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+import static com.part3.msplus.board.command.domain.QBoard.board;
+
 @Repository
 @RequiredArgsConstructor
 public class BoardDAO {
     private final JPAQueryFactory jpaQueryFactory;
 
-    public List<Board> findAll(BoardSearchCondition boardSearchCondition, Pageable pageable) {
+    public List<Board> findAll(SearchRequest searchRequest, Pageable pageable) {
         return jpaQueryFactory
-                .select(new BoardResponse(
-                        board.id.as("boardId"),
-                        board.name.as("boardName"),
-                        board.member_id.as("member"),
-                        board.created_at.as("createdAt")
-                ))
+                .select(board)
                 .from(board)
                 .fetch();
     }

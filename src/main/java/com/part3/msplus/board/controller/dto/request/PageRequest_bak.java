@@ -1,11 +1,10 @@
 package com.part3.msplus.board.controller.dto.request;
 
 import lombok.Data;
-import lombok.Setter;
 import org.springframework.data.domain.Sort;
 
 @Data
-public class PageRequest {
+public class PageRequest_bak {
     private int page = 1;
     private int size = 10;
     private Sort.Direction direction = Sort.Direction.DESC;

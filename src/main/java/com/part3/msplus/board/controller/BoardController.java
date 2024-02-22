@@ -2,9 +2,7 @@ package com.part3.msplus.board.controller;
 
 import com.part3.msplus.board.command.application.BoardCreateService;
 import com.part3.msplus.board.controller.dto.request.BoardCreateRequest;
-import com.part3.msplus.board.controller.dto.request.BoardSearchCondition;
-import com.part3.msplus.board.controller.dto.request.PageRequest;
-import com.part3.msplus.board.controller.dto.request.SearchRequest;
+import com.part3.msplus.board.controller.dto.request.RequestParam;
 import com.part3.msplus.board.controller.dto.response.BoardResponse;
 import com.part3.msplus.board.query.application.BoardReadService;
 import com.part3.msplus.board.controller.dto.response.PageResponse;
@@ -21,10 +19,8 @@ public class BoardController {
     private final BoardReadService boardReadService;
 
     @GetMapping
-    public PageResponse<BoardResponse> getBoards(SearchRequest searchRequest, PageRequest pageRequest) {
-        Pageable pageable = pageRequest.of();
-        BoardSearchCondition boardSearchCondition = new BoardSearchCondition(searchRequest);
-        return this.boardReadService.getBoards(boardSearchCondition, pageable);
+    public PageResponse<BoardResponse> getBoards(@ModelAttribute RequestParam requestParam) {
+        return this.boardReadService.getBoards(requestParam);
     }
     @PostMapping
     public BoardResponse createBoard(@RequestBody BoardCreateRequest boardCreateRequest) {
