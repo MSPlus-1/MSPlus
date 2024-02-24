@@ -19,7 +19,7 @@ public class BoardController {
     private final BoardReadService boardReadService;
 
     @GetMapping
-    public PageResponse<BoardResponse> getBoards(@ModelAttribute RequestParam requestParam) {
+    public PageResponse<BoardResponse> getBoards(RequestParam requestParam) {
         return this.boardReadService.getBoards(requestParam);
     }
     @PostMapping
