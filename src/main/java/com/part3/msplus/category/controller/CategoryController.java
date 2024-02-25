@@ -2,6 +2,7 @@ package com.part3.msplus.category.controller;
 
 import com.part3.msplus.category.command.application.CategoryService;
 import com.part3.msplus.category.controller.dto.CategoryRequest;
+import com.part3.msplus.category.controller.dto.CategoryResponse;
 import com.part3.msplus.category.query.application.CategoryReadService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +17,10 @@ public class CategoryController {
     private final CategoryService categoryService;
     private final CategoryReadService categoryReadService;
 
+    @GetMapping
+    public List<CategoryResponse> getCategories(){
+        return categoryReadService.getCategories();
+    }
 
     @PostMapping
     public Long createCategory(@RequestBody CategoryRequest request){
