@@ -29,7 +29,10 @@ public class CategoryService {
                     throw new IllegalArgumentException("해당 카테고리 없음 id : " + categoryId);
                 });
 
-        categoryRepository.deleteById(category.getId());
+        //categoryRepository.deleteById(category.getId());
+
+        category.setDeletedAt();
+        categoryRepository.save(category);
     }
 
     public void updateCategory(final Long categoryId, CategoryRequest request) {
