@@ -1,13 +1,10 @@
 package com.part3.msplus.board.controller.dto.request;
 
 import com.part3.msplus.board.command.domain.Board;
-import com.part3.msplus.board.command.domain.Category;
+import com.part3.msplus.category.command.domain.entity.Category;
 import com.part3.msplus.member.command.domain.Member;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
-
-import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
 
 @Getter
 @Builder

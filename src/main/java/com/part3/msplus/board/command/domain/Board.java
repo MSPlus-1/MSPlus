@@ -1,5 +1,6 @@
 package com.part3.msplus.board.command.domain;
 
+import com.part3.msplus.category.command.domain.entity.Category;
 import com.part3.msplus.global.exception.CustomException;
 import com.part3.msplus.global.exception.dto.Error;
 import com.part3.msplus.global.model.BaseTimeEntity;

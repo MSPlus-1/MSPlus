@@ -1,7 +1,7 @@
 package com.part3.msplus.board.command.application;
 
 import com.part3.msplus.board.command.domain.Board;
-import com.part3.msplus.board.command.domain.Category;
+import com.part3.msplus.category.command.domain.entity.Category;
 import com.part3.msplus.global.exception.CustomException;
 import com.part3.msplus.global.exception.dto.Error;
 import com.part3.msplus.member.command.domain.Member;
@@ -13,8 +13,6 @@ import com.part3.msplus.board.controller.dto.response.BoardResponse;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.time.ZonedDateTime;
 
 @Service
 @RequiredArgsConstructor
@@ -44,3 +42,4 @@ public class BoardCreateService {
         return new BoardResponse(board);
     }
 }
+
