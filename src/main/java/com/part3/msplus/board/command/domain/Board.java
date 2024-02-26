@@ -45,6 +45,21 @@ public class Board extends BaseTimeEntity {
         this.boardName = boardName;
     }
 
+    public void updateBoardName(Member member, String boardName) {
+        this.checkRole(member);
+        this.boardName = boardName;
+    }
+
+    public void updateCategory(Member member, Category category) {
+        this.checkRole(member);
+        this.category = category;
+    }
+
+    public void softDeleteBoard(Member member) {
+        this.checkRole(member);
+        this.softDelete();
+    }
+
     private void checkRole(Member member) {
         // member 의 role 을 확인. admin일 경우만 board 생성 가능
         if(!member.getMemberRole().getRole().equals(Role.ROLE_ADMIN) ) {

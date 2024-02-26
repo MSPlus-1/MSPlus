@@ -32,4 +32,8 @@ public abstract class BaseTimeEntity {
     public boolean isDeleted() {
         return this.deletedAt != null;
     }
+
+    public void softDelete() {
+        this.deletedAt = LocalDateTime.now();
+    }
 }
