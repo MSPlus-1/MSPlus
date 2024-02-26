@@ -9,4 +9,6 @@ public interface CategoryRepository {
     Category save(Category category);
 
     void deleteById(Long categoryId);
+
+    Optional<Category> findByName(String name);
 }

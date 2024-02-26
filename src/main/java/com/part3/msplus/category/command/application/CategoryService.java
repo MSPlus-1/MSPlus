@@ -3,6 +3,8 @@ package com.part3.msplus.category.command.application;
 import com.part3.msplus.category.command.domain.entity.Category;
 import com.part3.msplus.category.command.domain.repository.CategoryRepository;
 import com.part3.msplus.category.controller.dto.CategoryRequest;
+import com.part3.msplus.global.exception.CustomException;
+import com.part3.msplus.global.exception.dto.Error;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,7 +17,9 @@ public class CategoryService {
     private final CategoryRepository categoryRepository;
 
     public Long createCategory(CategoryRequest request) {
-        // TODO : 같은 name이 있는지 검증
+        categoryRepository.findByName(request.getName()).ifPresent(a -> {
+            throw new CustomException(Error.CATEGORY_NAME_DUPLICATION);
+        });
 
         final Category category = Category.create(request.getName());
         final Category savedCategory = categoryRepository.save(category);
@@ -25,9 +29,7 @@ public class CategoryService {
 
     public void deleteCategory(final Long categoryId) {
         final Category category = categoryRepository.findById(categoryId)
-                .orElseThrow(() -> {
-                    throw new IllegalArgumentException("해당 카테고리 없음 id : " + categoryId);
-                });
+                .orElseThrow(() -> new CustomException(Error.CATEGORY_NOT_FOUND));
 
         //categoryRepository.deleteById(category.getId());
 
@@ -37,9 +39,7 @@ public class CategoryService {
 
     public void updateCategory(final Long categoryId, CategoryRequest request) {
         final Category category = categoryRepository.findById(categoryId)
-                .orElseThrow(() -> {
-                    throw new IllegalArgumentException("해당 카테고리 없음 id : " + categoryId);
-                });
+                .orElseThrow(() -> new CustomException(Error.CATEGORY_NOT_FOUND));
 
         category.updateCategory(categoryId, request.getName());
     }
