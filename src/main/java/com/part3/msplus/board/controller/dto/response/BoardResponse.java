@@ -9,6 +9,8 @@ import lombok.*;
 import java.time.LocalDateTime;
 
 @Getter
+@Builder
+@AllArgsConstructor
 public class BoardResponse {
 
     private Long boardId;
