@@ -29,7 +29,6 @@ public class BoardCreateService {
      * @return
      */
     public BoardResponse createBoard(BoardCreateRequest boardCreateRequest) {
-        // TODO : exception handler 처리
         Member member = this.memberRepository.findById(boardCreateRequest.getMemberId())
                 .orElseThrow(() -> new CustomException(Error.MEMBER_NOT_FOUND));
         Category category = this.categoryRepository.findById(boardCreateRequest.getCategoryId())

@@ -1,26 +1,32 @@
 package com.part3.msplus.board.controller.dto.request;
 
+import com.part3.msplus.board.query.dto.BoardField;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 
-@Getter
+import java.util.List;
+
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class RequestParam {
-//    private SearchRequest searchRequest;
     private String searchTarget = "all";
     private String searchKeyword;
 
     private Integer offset = 0;
     private Integer limit = 50;
 
-    private Sort.Direction direction = Sort.Direction.DESC;
+    private String sortTarget = BoardField.CREATED_AT.getName();
+    private Sort.Direction sort = Sort.Direction.DESC;
+
 
     public PageRequest getPageRequest() {
-        return PageRequest.of(offset, limit);
+        List<Sort.Order> orders = List.of(new Sort.Order(sort, sortTarget));
+        return PageRequest.of(offset, limit, Sort.by(orders));
     }
 
     public SearchRequest getSearchRequest() {

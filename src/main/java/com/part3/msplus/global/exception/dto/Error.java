@@ -19,7 +19,8 @@ public enum Error {
     MEMBER_NOT_FOUND(30000, "Member not found"),
 
     // board : 40,000
-    BOARD_CREATE_PERMISSION_DENIED(30000, "Board create permission denied"),
+    BOARD_CREATE_PERMISSION_DENIED(40000, "Board create permission denied"),
+    Board_NOT_FOUND(40001, "Board not found"),
 
     // category : 50,000
     CATEGORY_NOT_FOUND(50000, "Category not found"),
