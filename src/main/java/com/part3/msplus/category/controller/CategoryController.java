@@ -5,6 +5,8 @@ import com.part3.msplus.category.controller.dto.CategoryRequest;
 import com.part3.msplus.category.controller.dto.CategoryResponse;
 import com.part3.msplus.category.query.application.CategoryReadService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,8 +20,8 @@ public class CategoryController {
     private final CategoryReadService categoryReadService;
 
     @GetMapping
-    public List<CategoryResponse> getCategories(){
-        return categoryReadService.getCategories();
+    public List<CategoryResponse> getCategories(@PageableDefault(size = 3) Pageable pageable){
+        return categoryReadService.getCategories(pageable).getContent();
     }
 
     @PostMapping
