@@ -22,7 +22,8 @@ public enum Error {
     BOARD_CREATE_PERMISSION_DENIED(30000, "Board create permission denied"),
 
     // category : 50,000
-    CATEGORY_NOT_FOUND(50000, "Category not found")
+    CATEGORY_NOT_FOUND(50000, "Category not found"),
+    CATEGORY_NAME_DUPLICATION(50001, "Category name duplication")
     ;
 
     private final int code;
